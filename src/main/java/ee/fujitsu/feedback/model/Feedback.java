@@ -16,7 +16,7 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String authorName;
-    private String authorEMail;
+    private String authorEmail;
     private String content;
     @Enumerated(EnumType.STRING)
     private FeedbackCategory category;
