@@ -1,10 +1,9 @@
 package ee.fujitsu.feedback.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -18,6 +17,6 @@ public class Feedback {
     private String authorName;
     private String authorEmail;
     private String content;
-    @Enumerated(EnumType.STRING)
-    private FeedbackCategory category;
+    @ElementCollection
+    private List<String> categories;
 }

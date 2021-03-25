@@ -1,6 +1,7 @@
 package ee.fujitsu.feedback.controller;
 
 import ee.fujitsu.feedback.model.Feedback;
+import ee.fujitsu.feedback.model.FeedbackDTO;
 import ee.fujitsu.feedback.service.FeedbackService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class FeedbackController {
     }
 
     @PostMapping
-    public Feedback saveFeedback(@RequestBody Feedback feedback) {
-        return feedbackService.save(feedback);
+    public Feedback saveFeedback(@RequestBody FeedbackDTO feedbackDTO) {
+        return feedbackService.save(feedbackDTO);
     }
 }
