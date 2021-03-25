@@ -18,13 +18,13 @@ public class FeedbackApplicationInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Feedback feedback = new Feedback();
-        feedback.setAuthorName("Harry Potter");
-        feedback.setAuthorEmail("harry.potter@hogwarts.com");
+        feedback.setAuthorName("Mary Smith");
+        feedback.setAuthorEmail("mary.smith@mail.com");
         List<String> categories = new ArrayList<>();
         categories.add("Patients portal");
         categories.add("Doctors portal");
         feedback.setCategories(categories);
-        feedback.setContent("I am a wizard");
+        feedback.setContent("10/10 feedback");
 
         feedbacksRepository.save(feedback);
     }
