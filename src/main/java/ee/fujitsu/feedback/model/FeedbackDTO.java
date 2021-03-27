@@ -1,34 +1,19 @@
 package ee.fujitsu.feedback.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
+@NoArgsConstructor
+@Getter
+@Setter
 public class FeedbackDTO {
 
+    private Long id;
     private String authorName;
     private String authorEmail;
     private String content;
-    private String[] categories;
-
-    public FeedbackDTO(String authorName, String authorEmail, String content, String[] categories) {
-        this.authorName = authorName;
-        this.authorEmail = authorEmail;
-        this.content = content;
-        this.categories = categories;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public String getAuthorEmail() {
-        return authorEmail;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String[] getCategories() {
-        return categories;
-    }
+    private List<String> categories;
 }

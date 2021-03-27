@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class FeedbackService {
@@ -24,12 +25,14 @@ public class FeedbackService {
         put(6, "Microsoft SharePoint");
     }};
 
-    public List<Feedback> findAll() {
-        return feedbacksRepository.findAll();
+    public List<FeedbackDTO> findAll() {
+        return feedbacksRepository.findAll().stream()
+                .map(this::convertFeedback)
+                .collect(Collectors.toList());
     }
 
     public Feedback save(FeedbackDTO feedbackDTO) {
-        String[] categoryArray = feedbackDTO.getCategories();
+        List<String> categoryArray = feedbackDTO.getCategories();
         if (feedbackDTO.getAuthorName() == null || feedbackDTO.getAuthorEmail() == null
                 || feedbackDTO.getContent() == null || categoryArray == null) {
             throw new InvalidFeedbackException("Insufficient data");
@@ -44,5 +47,15 @@ public class FeedbackService {
         feedback.setCategories(correctCategories);
         feedback.setContent(feedbackDTO.getContent());
         return feedbacksRepository.save(feedback);
+    }
+
+    private FeedbackDTO convertFeedback(Feedback feedback) {
+        FeedbackDTO dto = new FeedbackDTO();
+        dto.setId(feedback.getId());
+        dto.setAuthorName(feedback.getAuthorName());
+        dto.setAuthorEmail(feedback.getAuthorEmail());
+        dto.setContent(feedback.getContent());
+        dto.setCategories(feedback.getCategories());
+        return dto;
     }
 }

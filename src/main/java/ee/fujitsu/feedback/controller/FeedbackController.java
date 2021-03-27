@@ -18,7 +18,7 @@ public class FeedbackController {
     private FeedbackService feedbackService;
 
     @GetMapping("all")
-    public List<Feedback> getFeedbacks() {
+    public List<FeedbackDTO> getFeedbacks() {
         return feedbackService.findAll();
     }
 
